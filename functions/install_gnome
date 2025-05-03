@@ -7,9 +7,21 @@ function install_gnome_apps {
 }
 
 # Install GNOME Shell Extensions
-function install_shell_extensions {
-	# Update the list of packages in 'data/gnome-shell-extensions.list' to suit your preferences
-	install_from_list "preferred GNOME Shell extensions" "gnome-shell-extensions" install_gnome
+function install_shell_extensions_built_in {
+	# Update the list of packages in 'data/gnome-shell-extensions.list' to suit your preferences - built-in
+	install_from_list "preferred GNOME Shell extensions - built-in" "gnome-shell-extensions" install_gnome
+}
+
+function install_shell_extensions_community {
+	# Update the list of packages in 'data/gnome-shell-extensions.list' to suit your preferences - built-in
+	# echo_message title "Starting installation of ${1}..."
+	install_gnome_extension_community_from_list "preferred GNOME Shell extensions - from community" "gnome-shell-extensions_community" install_gnome
+}
+
+function config_shell_extensions_community {
+	# Update the list of packages in 'data/gnome-shell-extensions.list' to suit your preferences - built-in
+	# echo_message title "Starting installation of ${1}..."
+	config_gnome_extension_community_from_list "preferred GNOME Shell extensions - from community - configurations" "gnome-shell-extensions_community_config" install_gnome
 }
 
 # Install Codecs
@@ -25,7 +37,9 @@ function install_gnome {
 		--cancel-button "Go Back" \
 		$LINES $COLUMNS $(( $LINES - 12 )) \
 		'install_gnome_apps'        'GNOME Core Apps' \
-		'install_shell_extensions'  'GNOME Shell Extensions' \
+		'install_shell_extensions_built_in'  'GNOME Shell Extensions - Built-in' \
+		'install_shell_extensions_community'  'GNOME Shell Extensions - from community' \
+		'config_shell_extensions_community'  'GNOME Shell Extensions - from community - Configurations' \
 		3>&1 1>&2 2>&3)
 	# check exit status
 	if [ $? = 0 ]; then

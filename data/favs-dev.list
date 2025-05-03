@@ -1,11 +1,5 @@
 autotools-dev
-bzr
+cmake
+ghex
 git
-gtk-3-examples
-gtk-doc-tools
-icontool
 libgtk-3-dev
-nodejs
-npm
-optipng
-x11-apps

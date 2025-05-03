@@ -1,0 +1,18 @@
+
+function install_bun() {
+	NAME="bun runtime"
+  if (whiptail \
+    --title "Install $NAME" \
+    --yesno "Would you like to continue? " 8 56) then
+    echo_message info "Fetching source files..."
+    # update version when needed
+    curl -fsSL https://bun.sh/install | bash
+    # Done
+    echo_message success "bun installed."
+    # whiptail --title "Finished" --msgbox "The '${1}' package repository has been added." 8 56
+  else
+    # Cancelled
+    echo_message info "Installation of bun cancelled."
+  fi
+  install_thirdparty
+}

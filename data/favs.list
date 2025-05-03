@@ -1,11 +1,8 @@
-dconf-tools
+dconf-cli
+dconf-editor
+gedit-plugin-text-size
 gnome-disk-utility
-gnome-session
-gnome-software
-gnome-software-plugin-flatpak
-gnome-software-plugin-snap
-gnome-sushi
+gnome-shell-extensions
 gnome-tweak-tool
 nautilus
-sparkleshare
-transmission
+hplip

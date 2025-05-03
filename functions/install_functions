@@ -133,6 +133,86 @@ function install_from_list() {
 	fi
 }
 
+function install_single_gnome_extension_community() {
+	EXTENSION_ID=$(curl -s $@ | grep -oP 'data-uuid="\K[^"]+')
+	VERSION_TAG=$(curl -Lfs "https://extensions.gnome.org/extension-query/?search=$EXTENSION_ID" | jq '.extensions[0] | .shell_version_map | map(.pk) | max')
+	wget -O ${EXTENSION_ID}.zip "https://extensions.gnome.org/download-extension/${EXTENSION_ID}.shell-extension.zip?version_tag=$VERSION_TAG"
+	gnome-extensions install --force ${EXTENSION_ID}.zip
+	if ! gnome-extensions list | grep --quiet ${EXTENSION_ID}; then
+			busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s ${EXTENSION_ID}
+	fi
+	gnome-extensions enable ${EXTENSION_ID}
+	rm ${EXTENSION_ID}.zip
+}
+
+function install_gnome_extension_community_from_list() {
+	# echo_message header "Starting 'install_from_list' function..."
+	echo_message title "Starting installation of ${1}..."
+	# Variables
+	LIST=$(dirname "$0")'/data/'${2}'.list'
+	# Draw window
+	if (eval `resize` && whiptail \
+		--title "Install ${2^}" \
+		--yesno "Current list of extensions that will be installed: \n\n$(cat ${LIST}) \n\nWould you like to proceed?" \
+		$LINES $COLUMNS $(( $LINES - 12 )) \
+		--scrolltext \
+		3>&1 1>&2 2>&3) then
+		# Install loop
+		for EXTENSION in $(cat $LIST); do
+			# If EXTENSION is not installed
+			if [ $(check_gnome_extension_installed $EXTENSION) != 0 ]; then
+				# Install EXTENSION
+				echo_message warning "Extension '$EXTENSION' is not installed. Installing..."
+				# Admin privileges
+				# superuser_do "apt install -y $EXTENSION"
+				install_single_gnome_extension_community $EXTENSION
+				# Check if failed
+				if [[ $? != 0 ]]; then
+					echo_message error "Error installing '$EXTENSION'."
+				fi
+			else
+				# Show already installed message
+				echo_message info "Extension '$EXTENSION' is installed."
+			fi
+		done
+		# Finished
+		echo_message success "Installation of ${1} complete."
+		whiptail --title "Finished" --msgbox "Installation of ${1} is complete." 8 56
+		${3}
+	else
+		# Cancelled
+		echo_message info "Installation of ${1} cancelled."
+		${3}
+	fi
+}
+
+function config_gnome_extension_community_from_list() {
+	# echo_message header "Starting 'install_from_list' function..."
+	echo_message title "Starting config of ${1}..."
+	# Variables
+	LIST=$(dirname "$0")'/data/'${2}'.list'
+	# Draw window
+	if (eval `resize` && whiptail \
+		--title "Install ${2^}" \
+		--yesno "Current list of extensions that will be configured: \n\n$(cat ${LIST}) \n\nWould you like to proceed?" \
+		$LINES $COLUMNS $(( $LINES - 12 )) \
+		--scrolltext \
+		3>&1 1>&2 2>&3) then
+		# config loop
+		# todo: for loop
+		dconf write /org/gnome/shell/extensions/panel-date-format/format "'%Y-%m-%d %H:%M %:z'"
+		# Finished
+		echo_message success "Installation of ${1} complete."
+		whiptail --title "Finished" --msgbox "Installation of ${1} is complete." 8 56
+		${3}
+	else
+		# Cancelled
+		echo_message info "Installation of ${1} cancelled."
+		${3}
+	fi
+}
+
+
 # Install flatpak package
 #
 # ${1} = Name

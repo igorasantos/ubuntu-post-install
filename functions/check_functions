@@ -6,6 +6,11 @@ function check_package_installed() {
 	dpkg-query -W --showformat='${Status}\n' $@ | grep "install ok installed" &> /dev/null; echo $?
 }
 
+function check_gnome_extension_installed() {
+	# query dpkg for install status and return a value
+	gnome-extensions show $@ | grep 'State: ENABLED' &> /dev/null; echo $?
+}
+
 # Check if single package is installed
 # ${1} = package, ${2} = return_function
 function check_package() {

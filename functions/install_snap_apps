@@ -10,37 +10,57 @@ function install_snap_apps {
 		SNAPS=$(eval `resize` && whiptail \
 			--notags \
 			--title "Install $NAME" \
-			--menu "\nWhat ${NAME,,} would you like to install?" \
+			--menu "\nWhat ${NAME,,} would you like to install?" install_snap_sublime\
 			--ok-button "Install" \
 			--cancel-button "Go Back" \
 			$LINES $COLUMNS $(( $LINES - 12 )) \
-			'install_snap_atom'         'Atom' \
+			'install_snap_bruno'        'Bruno API-Client' \
+			'install_snap_code'         'VSCode' \
+			'install_snap_firefox'      'Firefox' \
+			'install_snap_gimp'      		'GIMP' \
+			'install_snap_intellij'     'IntelliJ IDEA Community Edition' \
+			'install_snap_pycharm'      'Pycharm Community Edition' \
+			'install_snap_jq'      			'jq command' \
+			'install_snap_telegram' 		'telegram desktop' \
 			'install_snap_inkscape'     'Inkscape' \
-			'install_snap_slack'        'Slack' \
-			'install_snap_spotify'      'Spotify' \
-			'install_snap_sublime'      'Sublime Text 3' \
 			3>&1 1>&2 2>&3)
 
 		case "${SNAPS}" in
-			install_snap_atom)
-				# install Atom text editor
-				install_snap_package "Atom" "atom" install_snap_apps
+			install_snap_bruno)
+				# install Bruno
+				install_snap_package "Bruno API Client" "bruno" install_snap_apps
+				;;
+			install_snap_code)
+				# install Code
+				install_snap_package "VSCode" "code" "--classic" install_snap_apps
+				;;
+			install_snap_firefox)
+				# install Firefox
+				install_snap_package "Mozilla Firefox" "firefox" install_snap_apps
+				;;
+			install_snap_gimp)
+				# install Firefox
+				install_snap_package "GIMP" "gimp" install_snap_apps
+				;;
+			install_snap_intellij)
+				# install Firefox
+				install_snap_package "IntelliJ IDEA Community Edition" "intellij-idea-community" "--classic" install_snap_apps
+				;;
+			install_snap_pycharm)
+				# install Firefox
+				install_snap_package "Pycharm Community Edition" "pycharm-community" "--classic" install_snap_apps
+				;;
+			install_snap_jq)
+				# install Firefox
+				install_snap_package "jq command" "jq" install_snap_apps
+				;;
+			install_snap_telegram)
+				# install Firefox
+				install_snap_package "Telegram Desktop" "telegram-desktop" install_snap_apps
 				;;
 			install_snap_inkscape)
 				# install Inkscape
 				install_snap_package "Inkscape" "inkscape" install_snap_apps
-				;;
-			install_snap_slack)
-				# install Slack
-				install_snap_package "Slack" "slack" install_snap_apps
-				;;
-			install_snap_spotify)
-				# install Spotify
-				install_snap_package "Spotify" "spotify" install_snap_apps
-				;;
-			install_snap_sublime)
-				# install Sublime Text
-				install_snap_package "Sublime Text 3" "sublime-text" install_snap_apps
 				;;
 			*) 
 				# cancel
