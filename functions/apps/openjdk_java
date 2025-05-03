@@ -1,10 +1,44 @@
 #!/bin/bash
 
 # Install Oracle Java from PPA
-function install_openjdk_java {
-	NAME="Open JDK 21"
-	PACKAGE="openjdk-21-jdk"
+function download_openjdk_java {
+	NAME="Open JDK ${@^}"
+	PACKAGE=openjdk-$@-jdk
 
 	# Install package
 	install_package "$NAME" "$PACKAGE" install_thirdparty
+}
+
+# Open JDK
+function install_openjdk_java {
+	status="0"
+	NAME="Open JDK Java"
+	while [ "$status" -eq 0 ]; do
+		VERSION=$(eval `resize` && whiptail \
+		--title "$NAME" \
+		--radiolist "Which version of $NAME would you like to install?" \
+		--ok-button "Install" \
+		--cancel-button "Go Back" \
+		$LINES $COLUMNS $(( $LINES - 12 )) \
+		"21"    "OpenJDK 21" ON \
+		"17"    "OpenJDK 17" OFF \
+		"11"    "OpenJDK 11" OFF \
+		3>&1 1>&2 2>&3) 
+		# Change to lower case and remove spaces.
+		case "${VERSION}" in
+			21)
+				download_openjdk_java 21;
+			;;
+			17)
+				download_openjdk_java 17;
+			;;
+			11)
+				download_openjdk_java 11;
+			;;
+			# return
+			*) status=1 
+				install_thirdparty
+			;;
+		esac
+	done
 }

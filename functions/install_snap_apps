@@ -23,6 +23,8 @@ function install_snap_apps {
 			'install_snap_jq'      			'jq command' \
 			'install_snap_telegram' 		'telegram desktop' \
 			'install_snap_inkscape'     'Inkscape' \
+			'install_snap_vlc'          'VLC' \
+			'install_snap_dbeaver'      'DBeaver' \
 			3>&1 1>&2 2>&3)
 
 		case "${SNAPS}" in
@@ -61,6 +63,14 @@ function install_snap_apps {
 			install_snap_inkscape)
 				# install Inkscape
 				install_snap_package "Inkscape" "inkscape" install_snap_apps
+				;;
+			install_snap_vlc)
+				# install Inkscape
+				install_snap_package "VLC" "vlc" install_snap_apps
+				;;
+			install_snap_dbeaver)
+				# install Inkscape
+				install_snap_package "DBeaver" "dbeaver-ce" install_snap_apps
 				;;
 			*) 
 				# cancel
