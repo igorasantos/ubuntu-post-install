@@ -34,7 +34,6 @@ function install_thirdparty {
 		# 'install_dropbox'       'Dropbox' \
 		'install_openjdk_java'   'OpenJDK Java' \
 		# 'install_rvm'           'Ruby Version Manager (RVM)' \
-		'install_sublime_text'  'Sublime Text 3' \
 		3>&1 1>&2 2>&3)
 
 	# check exit status
