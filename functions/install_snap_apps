@@ -10,7 +10,7 @@ function install_snap_apps {
 		SNAPS=$(eval `resize` && whiptail \
 			--notags \
 			--title "Install $NAME" \
-			--menu "\nWhat ${NAME,,} would you like to install?" install_snap_sublime\
+			--menu "\nWhat ${NAME,,} would you like to install?" \
 			--ok-button "Install" \
 			--cancel-button "Go Back" \
 			$LINES $COLUMNS $(( $LINES - 12 )) \
@@ -32,7 +32,7 @@ function install_snap_apps {
 				;;
 			install_snap_code)
 				# install Code
-				install_snap_package "VSCode" "code" "--classic" install_snap_apps
+				install_snap_package_with_flag "VSCode" "code" "--classic" install_snap_apps
 				;;
 			install_snap_firefox)
 				# install Firefox
@@ -44,11 +44,11 @@ function install_snap_apps {
 				;;
 			install_snap_intellij)
 				# install Firefox
-				install_snap_package "IntelliJ IDEA Community Edition" "intellij-idea-community" "--classic" install_snap_apps
+				install_snap_package_with_flag "IntelliJ IDEA Community Edition" "intellij-idea-community" "--classic" install_snap_apps
 				;;
 			install_snap_pycharm)
 				# install Firefox
-				install_snap_package "Pycharm Community Edition" "pycharm-community" "--classic" install_snap_apps
+				install_snap_package_with_flag "Pycharm Community Edition" "pycharm-community" "--classic" install_snap_apps
 				;;
 			install_snap_jq)
 				# install Firefox

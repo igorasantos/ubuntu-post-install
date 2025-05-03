@@ -21,4 +21,5 @@ function install_favs_utils {
 # Install preferred GNOME apps
 function install_codecs {
 	install_package "multimedia codecs" "ubuntu-restricted-extras" main
+	# change ubuntu-restricted-extras to its packages members
 }

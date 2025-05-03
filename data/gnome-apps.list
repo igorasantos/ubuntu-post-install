@@ -1,4 +1,3 @@
-gedit
 gnome-calculator
 gnome-calendar
 gnome-characters
@@ -6,5 +5,7 @@ gnome-logs
 gnome-screenshot
 gnome-system-monitor
 gnome-terminal
+gnome-text-editor
 gnome-usage
 gnome-weather
+

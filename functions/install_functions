@@ -282,3 +282,32 @@ function install_snap_package() {
 		${3}
 	fi
 }
+
+function install_snap_package_with_flag() {
+	# echo_message header "Starting 'install_snap_package' function..."
+	# If package is not installed
+	if [[ $(snap list | grep ${2} &> /dev/null; echo $?) != 0 ]]; then
+		echo_message info "${1} is not installed. Installing..."
+		if (whiptail \
+			--title "Install ${1}" \
+			--yesno "The snap package for ${1} is not installed. \n\nProceed with installation of '${2}'?" 10 64) then
+			# Install
+			echo_message info "Installing snap package '${2}'..."
+			# Admin privileges
+			superuser_do "snap install ${2} ${3}"
+			# Finished
+			echo_message success "Installation of '${2}' is complete."
+			whiptail --title "Finished" --msgbox "Installation of ${1} is complete." 8 56
+			${4}
+		else
+			# Cancelled
+			echo_message info "Installation of ${1} cancelled."
+			${4}
+		fi
+	else
+		# Already installed
+		echo_message info "Snap package '${2}' is already installed."
+		whiptail --title "Installed" --msgbox "${1} is already installed." 8 56
+		${4}
+	fi
+}
