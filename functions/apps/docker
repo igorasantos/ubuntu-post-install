@@ -23,6 +23,7 @@ function install_docker() {
     sudo groupadd docker
     sudo usermod -aG docker $USER
     newgrp docker
+    echo_message success "docker installed."
   else
     # Cancelled
     echo_message info "Installation of docker cancelled."

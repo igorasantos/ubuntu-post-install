@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# Install Chrome
+function download_zoom {
+	# Variables
+	NAME="Zoom Workspace"
+	PACKAGE=zoom
+  VERSION=6.4.6.1370 # update here
+	REMOTE="https://zoom.us/client/$VERSION"
+	# Download and install remote package
+	install_remote_package "$NAME" $PACKAGE $REMOTE install_thirdparty
+}
+
+function install_zoom {
+	NAME="Zoom Workspace"
+	if (whiptail \
+    --title "Install $NAME" \
+    --yesno "Would you like to continue? " 8 56) then
+    echo_message info "Fetching source files..."
+    download_zoom;
+    echo_message success "nordvpn installed."
+  else
+    # Cancelled
+    echo_message info "Installation of zoom cancelled."
+	fi
+  install_thirdparty
+}
