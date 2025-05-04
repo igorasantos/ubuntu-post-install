@@ -1,0 +1,21 @@
+
+function install_nordvpn() {
+	NAME="NordVPN cli"
+  if (whiptail \
+    --title "Install $NAME" \
+    --yesno "Would you like to continue? " 8 56) then
+    echo_message info "Fetching source files..."
+    # update version when needed
+    sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
+    # Done
+    # post install
+    # sudo groupadd nordvpn
+    # sudo usermod -aG nordvpn $USER
+    echo_message success "nordvpn installed."
+    # whiptail --title "Finished" --msgbox "The '${1}' package repository has been added." 8 56
+  else
+    # Cancelled
+    echo_message info "Installation of nordvpn cancelled."
+  fi
+  install_thirdparty
+}
