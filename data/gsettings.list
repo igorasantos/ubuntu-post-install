@@ -5,6 +5,15 @@ org.gnome.desktop.interface show-battery-percentage true
 org.gnome.desktop.wm.preferences button-layout 'close,minimize,maximize:'
 org.gnome.mutter center-new-windows true
 org.gnome.nautilus.preferences sort-directories-first true
+org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 32
+org.gnome.shell.extensions.dash-to-dock dock-fixed true
+org.gnome.shell.extensions.dash-to-dock dock-position 'LEFT'
+org.gnome.shell.extensions.dash-to-dock extend-height true
+org.gnome.shell.extensions.dash-to-dock show-mounts false
+org.gnome.shell.extensions.dash-to-dock show-mounts-only-mounted false
+org.gnome.shell.extensions.dash-to-dock show-trash false
+org.gnome.shell.extensions.ding show-home false
 org.gnome.Terminal.Legacy.Settings dark-theme true
 org.gnome.Terminal.Legacy.Settings theme-variant 'dark'
 org.gtk.Settings.Debug enable-inspector-keybinding true
+system.locale region 'en_GB.UTF-8'
