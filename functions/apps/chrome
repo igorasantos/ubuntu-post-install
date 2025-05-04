@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install Chrome
-function download_chrome { 
+function download_chrome {
 	# Variables
 	NAME="Google Chrome (${@^})"
 	PACKAGE=google-chrome-$@_current
@@ -25,7 +25,7 @@ function install_chrome {
 		"stable"    "Stable build" ON \
 		"beta"      "Beta build" OFF \
 		"unstable"  "Unstable build" OFF \
-		3>&1 1>&2 2>&3) 
+		3>&1 1>&2 2>&3)
 		# Change to lower case and remove spaces.
 		case "${VERSION}" in
 			stable)
@@ -38,7 +38,7 @@ function install_chrome {
 				download_chrome unstable;
 			;;
 			# return
-			*) status=1 
+			*) status=1
 				install_thirdparty
 			;;
 		esac

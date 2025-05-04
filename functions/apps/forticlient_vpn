@@ -1,0 +1,25 @@
+function download_forticlient_vpn {
+	# Variables
+	NAME="Forticlient VPN"
+  VERSION=7.4.3.1736
+  PACKAGE=forticlient_vpn_$VERSION
+	REMOTE="https://filestore.fortinet.com/forticlient/downloads"
+	# Download and install remote package
+	install_remote_package "$NAME" $PACKAGE $REMOTE install_thirdparty
+}
+
+function install_forticlient_vpn {
+	NAME="forticlient vpn"
+	if (whiptail \
+    --title "Install $NAME" \
+    --yesno "Would you like to continue? " 8 56) then
+    echo_message info "Fetching source files..."
+    download_forticlient_vpn;
+    echo_message success "forticlient vpn installed."
+  else
+    # Cancelled
+    echo_message info "Installation of forticlient vpn cancelled."
+    whiptail --title "Cancelled" --msgbox "Installation of forticlient vpn cancelled." 8 56
+    install_thirdparty
+	fi
+}
