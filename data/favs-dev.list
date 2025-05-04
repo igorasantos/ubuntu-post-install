@@ -3,3 +3,5 @@ cmake
 ghex
 git
 libgtk-4-dev
+build-essential
+libssl-dev

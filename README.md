@@ -28,3 +28,9 @@ You use these scripts, you can just run the main script from the root of the sou
 Alternatively, if you use `bash` and cloned this to your home folder, add the following to your `.bashrc` to run this script on-demand.
 
     export PATH=${PATH}:~/ubuntu-post-install/
+
+## To do install scripts
+- maven
+- golang
+- libreoffice-calc
+- forticlient
