@@ -30,6 +30,5 @@ Alternatively, if you use `bash` and cloned this to your home folder, add the fo
     export PATH=${PATH}:~/ubuntu-post-install/
 
 ## To do install scripts
-- golang
 - libreoffice-calc
 - forticlient

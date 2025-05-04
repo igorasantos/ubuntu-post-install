@@ -1,0 +1,39 @@
+function download_golang {
+	if [ "`uname -i`" != "x86_64" ]; then
+      echo "Update the script to your Arch case."
+      install_thirdparty;
+  fi
+  ARCH=amd64
+  NAME="golang"
+	PACKAGE=go
+  VERSION=1.24.2 # update here
+  BASE_URL="https://go.dev/dl"
+  FILENAME=$PACKAGE$VERSION.linux-$ARCH.tar.gz
+  REMOTE="$BASE_URL/$FILENAME"
+  # Download and install remote package
+	curl -L -O $REMOTE
+  #  && unzip $FILENAME -d ~/.maven && rm $FILENAME
+  sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf $FILENAME
+  echo "" >> ~/.bashrc
+  echo "# GOLANG" >> ~/.bashrc
+  echo "export PATH=\"\$PATH:/usr/local/go/bin\"" >> ~/.bashrc
+  source ~/.bashrc
+  rm $FILENAME
+}
+
+function install_golang {
+	NAME="golang"
+	if (whiptail \
+    --title "Install $NAME" \
+    --yesno "Would you like to continue? " 8 56) then
+    echo_message info "Fetching source files..."
+    download_golang;
+    echo_message success "golang installed."
+    whiptail --title "Finished" --msgbox "Installation of golang complete." 8 56
+  else
+    # Cancelled
+    echo_message info "Installation of golang cancelled."
+    whiptail --title "Cancelled" --msgbox "Installation of golang cancelled." 8 56
+	fi
+  install_thirdparty
+}

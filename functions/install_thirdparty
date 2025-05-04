@@ -38,6 +38,7 @@ function install_thirdparty {
 		'install_nvm'              'nvm: install' \
 		'install_nvm_post_install' 'nvm: post install (node lts & pnpm)' \
 		'install_bun'              'bun' \
+		'install_golang'           'go' \
 		'install_docker'           'docker-ce' \
 		'install_nordvpn'          'nordvpn cli' \
 		'install_zoom'             'zoom workspace' \

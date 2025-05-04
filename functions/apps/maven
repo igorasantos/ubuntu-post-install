@@ -10,7 +10,7 @@ function download_maven {
 	curl -L -O $REMOTE && unzip $FILENAME -d ~/.maven && rm $FILENAME
   echo "" >> ~/.bashrc
   echo "#MAVEN" >> ~/.bashrc
-  echo "export PATH="\$HOME/.maven/apache-maven-$FULL_VERSION/bin:\$PATH"" >> ~/.bashrc
+  echo "export PATH=\"\$HOME/.maven/apache-maven-$FULL_VERSION/bin:\$PATH\"" >> ~/.bashrc
   source ~/.bashrc
 }
 
