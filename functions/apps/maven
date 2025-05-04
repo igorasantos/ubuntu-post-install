@@ -1,0 +1,32 @@
+function download_maven {
+	# Variables
+  NAME="Maven"
+	PACKAGE=apache-maven
+  MAJOR_VERSION=3 # update here
+  FULL_VERSION=3.9.9 # update here
+  FILENAME=apache-maven-$FULL_VERSION-bin.zip
+	REMOTE="https://dlcdn.apache.org/maven/maven-$MAJOR_VERSION/$FULL_VERSION/binaries/$FILENAME"
+	# Download and install remote package
+	curl -L -O $REMOTE && unzip $FILENAME -d ~/.maven && rm $FILENAME
+  echo "" >> ~/.bashrc
+  echo "#MAVEN" >> ~/.bashrc
+  echo "export PATH="\$HOME/.maven/apache-maven-$FULL_VERSION/bin:\$PATH"" >> ~/.bashrc
+  source ~/.bashrc
+}
+
+function install_maven {
+	NAME="Maven 3"
+	if (whiptail \
+    --title "Install $NAME" \
+    --yesno "Would you like to continue? " 8 56) then
+    echo_message info "Fetching source files..."
+    download_maven;
+    echo_message success "maven installed."
+    whiptail --title "Finished" --msgbox "Installation of maven complete." 8 56
+  else
+    # Cancelled
+    echo_message info "Installation of maven cancelled."
+    whiptail --title "Cancelled" --msgbox "Installation of maven cancelled." 8 56
+	fi
+  install_thirdparty
+}

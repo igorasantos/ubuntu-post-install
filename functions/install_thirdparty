@@ -32,6 +32,7 @@ function install_thirdparty {
 		$LINES $COLUMNS $(( $LINES - 12 )) \
 		'install_chrome'           'Google Chrome' \
 		'install_openjdk_java'     'OpenJDK Java' \
+		'install_maven'            'maven' \
 		'install_sdkman'           'sdkman' \
 		'install_sdkman_java'      'sdkman java' \
 		'install_nvm'              'nvm: install' \
