@@ -37,6 +37,8 @@ function install_thirdparty {
 		'install_docker'        'docker-ce' \
 		'install_nordvpn'       'nordvpn cli' \
 		'install_zoom'          'zoom workspace' \
+		'install_gcloud_deps'   'gcloud deps' \
+		'install_gcloud'        'gcloud' \
 		3>&1 1>&2 2>&3)
 
 	# check exit status

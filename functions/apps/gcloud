@@ -1,0 +1,49 @@
+
+function install_gcloud_deps() {
+	NAME="GCloud CLI"
+  if (whiptail \
+    --title "Install $NAME" \
+    --yesno "Would you like to continue? " 8 56) then
+    echo_message info "Fetching source files..."
+    # update version when needed
+    install_from_list "gcloud cli dependencies" "gcloud-cli-deps" install_thirdparty
+    # Done
+    # post install
+    # sudo groupadd nordvpn
+    # sudo usermod -aG nordvpn $USER
+    echo_message success "gcloud dependencies installed."
+    # whiptail --title "Finished" --msgbox "The '${1}' package repository has been added." 8 56
+  else
+    # Cancelled
+    echo_message info "Installation of gcloud dependencies cancelled."
+  fi
+  install_thirdparty
+}
+
+function install_gcloud() {
+	NAME="GCloud CLI"
+  if (whiptail \
+    --title "Install $NAME" \
+    --yesno "Would you like to continue? " 8 56) then
+    echo_message info "Fetching source files..."
+    # import gcloud pub keys
+    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
+    # Add the gcloud CLI distribution URI as a package source.
+    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+    # Update and install the gcloud CLI
+    sudo apt update
+    sudo apt install google-cloud-cli
+    # sudo apt install google-cloud-cli-app-engine-java
+    # sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)
+    # Done
+    # post install
+    # sudo groupadd nordvpn
+    # sudo usermod -aG nordvpn $USER
+    echo_message success "gcloud cli installed."
+    # whiptail --title "Finished" --msgbox "The '${1}' package repository has been added." 8 56
+  else
+    # Cancelled
+    echo_message info "Installation of gcloud cli cancelled."
+  fi
+  install_thirdparty
+}
