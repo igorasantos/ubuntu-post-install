@@ -30,15 +30,16 @@ function install_thirdparty {
 		--ok-button "Install" \
 		--cancel-button "Go Back" \
 		$LINES $COLUMNS $(( $LINES - 12 )) \
-		'install_chrome'        'Google Chrome' \
-		'install_openjdk_java'  'OpenJDK Java' \
-		'install_nvm'           'node version manager (nvm)' \
-		'install_bun'           'bun' \
-		'install_docker'        'docker-ce' \
-		'install_nordvpn'       'nordvpn cli' \
-		'install_zoom'          'zoom workspace' \
-		'install_gcloud_deps'   'gcloud deps' \
-		'install_gcloud'        'gcloud' \
+		'install_chrome'           'Google Chrome' \
+		'install_openjdk_java'     'OpenJDK Java' \
+		'install_nvm'              'nvm: install' \
+		'install_nvm_post_install' 'nvm: post install (node lts & pnpm)' \
+		'install_bun'              'bun' \
+		'install_docker'           'docker-ce' \
+		'install_nordvpn'          'nordvpn cli' \
+		'install_zoom'             'zoom workspace' \
+		'install_gcloud_deps'      'gcloud deps' \
+		'install_gcloud'           'gcloud' \
 		3>&1 1>&2 2>&3)
 
 	# check exit status

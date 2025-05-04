@@ -1,4 +1,3 @@
-
 function install_nvm() {
 	NAME="Node Version Manager"
   if (whiptail \
@@ -13,6 +12,29 @@ function install_nvm() {
   else
     # Cancelled
     echo_message info "Installation of nvm cancelled."
+  fi
+  install_thirdparty
+}
+
+function install_nvm_post_install() {
+	NAME="NVM post install (node lts & pnpm)"
+  if (whiptail \
+    --title "Install $NAME" \
+    --yesno "Would you like to continue? " 8 56) then
+    echo_message info "Running nvm post install..."
+    # update version when needed
+    # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+    # Done
+    source ~/.nvm/nvm.sh
+    nvm install node
+    source ~/.bashrc
+    npm install -g pnpm@latest-10 # update pnpm version
+    echo_message success "nvm post installations completed."
+    # whiptail --title "Finished" --msgbox "The '${1}' package repository has been added." 8 56
+    whiptail --title "Finished" --msgbox "Post installations of nvm complete." 8 56
+  else
+    # Cancelled
+    echo_message info "Post installation of nvm cancelled."
   fi
   install_thirdparty
 }
