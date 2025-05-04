@@ -30,21 +30,22 @@ function install_thirdparty {
 		--ok-button "Install" \
 		--cancel-button "Go Back" \
 		$LINES $COLUMNS $(( $LINES - 12 )) \
-		'install_chrome'           'Google Chrome' \
-		'install_openjdk_java'     'OpenJDK Java' \
-		'install_maven'            'maven' \
-		'install_sdkman'           'sdkman' \
-		'install_sdkman_java'      'sdkman java' \
-		'install_nvm'              'nvm: install' \
-		'install_nvm_post_install' 'nvm: post install (node lts & pnpm)' \
-		'install_bun'              'bun' \
-		'install_golang'           'go' \
-		'install_docker'           'docker-ce' \
-		'install_nordvpn'          'nordvpn cli' \
-		'install_zoom'             'zoom workspace' \
-		'install_forticlient_vpn'  'forticlient vpn' \
-		'install_gcloud_deps'      'gcloud deps' \
-		'install_gcloud'           'gcloud' \
+		'install_chrome'                        'Google Chrome' \
+		'install_openjdk_java'                  'OpenJDK Java' \
+		'install_maven'                         'maven' \
+		'install_sdkman'                        'sdkman' \
+		'install_sdkman_java'                   'sdkman java' \
+		'install_nvm'                           'nvm: install' \
+		'install_nvm_post_install'              'nvm: post install (node lts & pnpm)' \
+		'install_bun'                           'bun' \
+		'install_golang'                        'go' \
+		'install_docker'                        'docker-ce' \
+		'install_nordvpn'                       'nordvpn cli' \
+		'install_zoom'                          'zoom workspace' \
+		'install_forticlient_vpn'               'forticlient vpn' \
+		'install_forticlient_vpn_post_install'  'forticlient vpn post install' \
+		'install_gcloud_deps'                   'gcloud deps' \
+		'install_gcloud'                        'gcloud' \
 		3>&1 1>&2 2>&3)
 
 	# check exit status

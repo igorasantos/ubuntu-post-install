@@ -23,3 +23,27 @@ function install_forticlient_vpn {
     install_thirdparty
 	fi
 }
+function install_forticlient_vpn_post_install() {
+	NAME="forticlient vpn post install"
+  if (whiptail \
+    --title "Install $NAME" \
+    --yesno "Would you like to continue? " 8 56) then
+    echo_message info "Running forticlient post install..."
+    # update version when needed
+    # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+    # Done
+    # source ~/.nvm/nvm.sh
+    # nvm install node
+    # source ~/.bashrc
+    # npm install -g pnpm@latest-10 # update pnpm version
+    sudo systemctl stop forticlient
+    sudo systemctl disable forticlient
+    echo_message success "forticlient post installation completed."
+    # whiptail --title "Finished" --msgbox "The '${1}' package repository has been added." 8 56
+    whiptail --title "Finished" --msgbox "Post installation of forticlient complete." 8 56
+  else
+    # Cancelled
+    echo_message info "Post installation of forticlient cancelled."
+  fi
+  install_thirdparty
+}
