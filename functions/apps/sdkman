@@ -1,0 +1,44 @@
+function install_sdkman() {
+	NAME="sdkman: sdk manager"
+  if (whiptail \
+    --title "Install $NAME" \
+    --yesno "Would you like to continue? " 8 56) then
+    echo_message info "Fetching source files..."
+    # update version when needed
+    curl -s "https://get.sdkman.io" | bash
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+    # Done
+    echo_message success "sdkman installed."
+    # whiptail --title "Finished" --msgbox "The '${1}' package repository has been added." 8 56
+    whiptail --title "Finished" --msgbox "Installation of sdkman completed." 8 56
+  else
+    # Cancelled
+    echo_message info "Installation of sdkman cancelled."
+    whiptail --title "Finished" --msgbox "Installation of sdkman cancelled." 8 56
+  fi
+  install_thirdparty
+}
+
+function install_sdkman_java() {
+	NAME="sdkman: java versions (11, 17 & 21)"
+  if (whiptail \
+    --title "Install $NAME" \
+    --yesno "Would you like to continue? " 8 56) then
+    echo_message info "Fetching source files..."
+    # update version when needed
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+    sdk install java 11.0.27-ms
+    sdk install java 17-open
+    sdk install java 21.0.2-open
+    # curl -s "https://get.sdkman.io" | bash
+    # Done
+    echo_message success "sdkman installed."
+    # whiptail --title "Finished" --msgbox "The '${1}' package repository has been added." 8 56
+    whiptail --title "Finished" --msgbox "Installation of sdkman completed." 8 56
+  else
+    # Cancelled
+    echo_message info "Installation of sdkman cancelled."
+    whiptail --title "Finished" --msgbox "Installation of sdkman cancelled." 8 56
+  fi
+  install_thirdparty
+}

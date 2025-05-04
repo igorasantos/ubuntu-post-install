@@ -23,7 +23,7 @@ function install_openjdk_java {
 		"21"    "OpenJDK 21" ON \
 		"17"    "OpenJDK 17" OFF \
 		"11"    "OpenJDK 11" OFF \
-		3>&1 1>&2 2>&3) 
+		3>&1 1>&2 2>&3)
 		# Change to lower case and remove spaces.
 		case "${VERSION}" in
 			21)
@@ -36,7 +36,7 @@ function install_openjdk_java {
 				download_openjdk_java 11;
 			;;
 			# return
-			*) status=1 
+			*) status=1
 				install_thirdparty
 			;;
 		esac
